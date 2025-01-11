@@ -1,7 +1,8 @@
-import type { NextConfig } from "next";
-
-const nextConfig: NextConfig = {
-  /* config options here */
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  experimental: {
+    turboMode: false, // Ensure Turbo mode is disabled
+  },
 };
 
-export default nextConfig;
+module.exports = nextConfig;
