@@ -85,6 +85,7 @@ const Form = () => {
     "Subscription Fraud",
     "Ponzi Schemes",
     "Fake Government Calls/Emails",
+    "Others"
   ];
 
   const handleChange = (event: SelectChangeEvent<string>) => {
@@ -254,7 +255,7 @@ const Form = () => {
         />
         <Stack
           alignItems="flex-start"
-          spacing={2}
+          spacing={6}
           padding={2}
           borderRadius="8px"
           bgcolor={"#E6E6E6"}
@@ -262,9 +263,11 @@ const Form = () => {
           <Typography variant="h6" fontWeight="bold" color="textActive">
             Attachment
           </Typography>
-          <Typography variant="body2">
-            Upload up to 5 supported files (PDF, document, or image). Max 10 MB
-            per file.
+          <Typography variant="l1">
+          If you have any proof or supporting documents, 
+          please feel free to attach the file
+           (PDF, document, or image)
+           
           </Typography>
           <CustomButton
             label="Add File"

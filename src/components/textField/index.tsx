@@ -117,64 +117,81 @@ export const CustomInputField = forwardRef<HTMLInputElement, CustomInputFieldPro
 
           {/* Input Field */}
           <OutlinedInput
-            inputRef={ref} // Attach forwarded ref here
-            value={value} // Controlled input value
-            onChange={handleInputChange} // On change handler
-            type={type === 'password' ? (showPass ? 'text' : 'password') : type}
-            placeholder={placeholder} // Use placeholder directly in the input
-            disabled={disabled}
-            error={error}
-            size={size}
-            minRows={multiLineProps?.minRows}
-            maxRows={multiLineProps?.maxRows}
-            multiline={!!multiLineProps}
-            inputProps={{
-              maxLength: multiLineProps?.maxChar,
-              'aria-label': label,
-              'aria-describedby': helperText ? `${label}-helper-text` : undefined,
-            }}
-            sx={{
-              width: '100%',
-              ...sx,
-            }}
-            startAdornment={
-              startAdornment && (
-                <Stack
-                  direction="row"
-                  marginLeft={size === 'small' ? '-13px' : '-15px'}
-                  bgcolor="grey.200"
-                  border="1px solid"
-                  borderColor="divider"
-                  borderRadius="4px 0px 0px 4px"
-                  alignItems="center"
-                  justifyContent="center"
-                  alignSelf="stretch"
-                  px={size === 'small' ? '10px' : '10px'}
-                >
-                  {startAdornment}
-                </Stack>
-              )
-            }
-            endAdornment={
-              type === 'password' ? (
-                <InputAdornment position="end">
-                  <IconButton
-                    size="small"
-                    onClick={() => setShowPass(!showPass)}
-                    aria-label={showPass ? 'Hide password' : 'Show password'}
-                  >
-                    {showPass ? (
-                      <VisibilityIcon sx={{ color: 'action.active' }} />
-                    ) : (
-                      <VisibilityOffIcon sx={{ color: 'action.active' }} />
-                    )}
-                  </IconButton>
-                </InputAdornment>
-              ) : endAdornment && (
-                <InputAdornment position="end">{endAdornment}</InputAdornment>
-              )
-            }
-          />
+  inputRef={ref}
+  value={value} // Controlled input value
+  onChange={handleInputChange} // On change handler
+  type={type === 'password' ? (showPass ? 'text' : 'password') : type}
+  placeholder={placeholder} // Use placeholder directly in the input
+  disabled={disabled}
+  error={error}
+  size={size}
+  minRows={multiLineProps?.minRows}
+  maxRows={multiLineProps?.maxRows}
+  multiline={!!multiLineProps}
+  inputProps={{
+    maxLength: multiLineProps?.maxChar,
+    'aria-label': label,
+    'aria-describedby': helperText ? `${label}-helper-text` : undefined,
+    ...(type === 'number' && {
+      inputMode: 'numeric', // Prevent spinner
+      pattern: '[0-9]*', // Ensure numeric input
+    }),
+  }}
+  sx={{
+    width: '100%',
+    
+    ...sx,
+    // Hide the spinner
+    '& input[type=number]': {
+      'MozAppearance': 'textfield', // Firefox
+      '-webkit-appearance': 'none', // Chrome, Safari, Edge
+      '&::-webkit-inner-spin-button, &::-webkit-outer-spin-button': {
+        display: 'none', // Remove spinner
+      },
+    },
+  }}
+  startAdornment={
+    startAdornment && (
+      <Stack
+        direction="row"
+        marginLeft={size === 'small' ? '-13px' : '-15px'}
+        bgcolor="grey.200"
+        border="1px solid"
+        borderColor="divider"
+        borderRadius="4px 0px 0px 4px"
+        alignItems="center"
+        justifyContent="center"
+        alignSelf="stretch"
+        px={size === 'small' ? '10px' : '10px'}
+        sx={{
+          marginRight: '8px', // Add space between the adornment and text
+        }}
+      >
+        {startAdornment}
+      </Stack>
+    )
+  }
+  endAdornment={
+    type === 'password' ? (
+      <InputAdornment position="end">
+        <IconButton
+          size="small"
+          onClick={() => setShowPass(!showPass)}
+          aria-label={showPass ? 'Hide password' : 'Show password'}
+        >
+          {showPass ? (
+            <VisibilityIcon sx={{ color: 'action.active' }} />
+          ) : (
+            <VisibilityOffIcon sx={{ color: 'action.active' }} />
+          )}
+        </IconButton>
+      </InputAdornment>
+    ) : endAdornment && (
+      <InputAdornment position="end">{endAdornment}</InputAdornment>
+    )
+  }
+/>
+
 
           {/* Helper Text */}
           <Typography

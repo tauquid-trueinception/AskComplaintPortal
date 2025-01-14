@@ -5,7 +5,7 @@ import { Stack } from "@mui/material";
 
 export default function Home() {
   return (
-    <Stack height={'100%'} alignItems={'center'} >
+    <Stack height={'100%'} alignItems={'center'} bgcolor={'secondary.50'} >
     <TopBar
       links={[
         // { label: 'Home', href: '/' },

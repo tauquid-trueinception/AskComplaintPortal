@@ -8,7 +8,6 @@ import {
   useMediaQuery,
   useTheme,
 } from "@mui/material";
-import TouchAppIcon from "@mui/icons-material/TouchApp";
 import React from "react";
 
 const WatsApp = () => {
@@ -74,7 +73,7 @@ const WatsApp = () => {
       </Typography>
       <Link href="https://whatsapp.com/channel/0029VaxcX7tE50UZJcUJa50y">
         {" "}
-        <CustomButton variant="contained" color="primary" label={"Join Now"} size={isMobile ? "small" : "large"} startAdornment={<TouchAppIcon />} sx={{fontWeight:"bold"}} />
+        <CustomButton variant="contained" color="primary" label={"Join Now"} size={isMobile ? "small" : "large"}  sx={{fontWeight:"bold"}} />
       </Link>
     </Stack>
   );
