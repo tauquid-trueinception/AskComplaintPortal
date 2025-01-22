@@ -85,7 +85,7 @@ export const CustomInputField = forwardRef<HTMLInputElement, CustomInputFieldPro
           >
             <Typography
               variant="l1"
-              color={disabled ? 'text.disabled' : 'text.primary'}
+              color={disabled ? 'text.disabled' : 'rgba(255, 255, 255, 0.87)'}
               sx={{ fontWeight: 400 }}
             >
               {label}
@@ -104,7 +104,7 @@ export const CustomInputField = forwardRef<HTMLInputElement, CustomInputFieldPro
           {multiLineProps && (
             <Typography
               variant="l3"
-              color="text.secondary"
+              color="rgba(255, 255, 255, 0.60)"
               sx={{
                 position: 'absolute',
                 top: '8px',
@@ -139,12 +139,28 @@ export const CustomInputField = forwardRef<HTMLInputElement, CustomInputFieldPro
   }}
   sx={{
     width: '100%',
-    
+    color: '#fff', // Default input text color (typed text)
+    '& .MuiOutlinedInput-notchedOutline': {
+      borderColor: '#74747A', // Default border color
+    },
+    '&:hover .MuiOutlinedInput-notchedOutline': {
+      borderColor: '#74747A', // Border color on hover
+    },
+    '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+      borderColor: '#74747A', // Border color when focused
+    },
+    '& .MuiInputBase-input': {
+      color: '#fff', // Typed text color
+      '&::placeholder': {
+        color: 'rgba(255, 255, 255, 0.60)', // Placeholder text color
+        opacity: 1, // Ensure full opacity
+      },
+    },
     ...sx,
     // Hide the spinner
     '& input[type=number]': {
-      'MozAppearance': 'textfield', // Firefox
-      '-webkit-appearance': 'none', // Chrome, Safari, Edge
+      MozAppearance: 'textfield', // Firefox
+      WebkitAppearance: 'none', // Chrome, Safari, Edge
       '&::-webkit-inner-spin-button, &::-webkit-outer-spin-button': {
         display: 'none', // Remove spinner
       },
@@ -155,7 +171,8 @@ export const CustomInputField = forwardRef<HTMLInputElement, CustomInputFieldPro
       <Stack
         direction="row"
         marginLeft={size === 'small' ? '-13px' : '-15px'}
-        bgcolor="grey.200"
+        bgcolor={'#46464A'}
+        color={'#FFFFFF99'}
         border="1px solid"
         borderColor="divider"
         borderRadius="4px 0px 0px 4px"
@@ -187,10 +204,12 @@ export const CustomInputField = forwardRef<HTMLInputElement, CustomInputFieldPro
         </IconButton>
       </InputAdornment>
     ) : endAdornment && (
-      <InputAdornment position="end">{endAdornment}</InputAdornment>
+      <InputAdornment position="end" sx={{color:'#74747A',height:'20',width:'20px'}}>{endAdornment}</InputAdornment>
     )
   }
 />
+
+
 
 
           {/* Helper Text */}

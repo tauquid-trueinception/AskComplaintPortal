@@ -24,7 +24,7 @@ const TopBar: React.FC<TopBarProps> = ({  }) => {
     <AppBar
       position="static"
       sx={{
-        bgcolor: 'background.paper',
+        bgcolor: '#121212',
         boxShadow: '0px 2px 0px 0px #E6E6E6',
       }}
     >
@@ -37,14 +37,9 @@ const TopBar: React.FC<TopBarProps> = ({  }) => {
         {/* Logo Section */}
         <Stack direction="row" alignItems="center" justifyContent={'center'} gap={1}>
           <Typography
-            sx={{
-              color: '#000',
-              fontFamily: 'Kalam',
-              fontSize: isMobile ? '24px' : '32px',
-              fontWeight: 700,
-              lineHeight: '40px',
-              letterSpacing: '0.64px',
-            }}
+          variant= {isMobile ? 'h5' : 'h3'} 
+           fontWeight={'medium'}
+           color='rgba(255, 255, 255, 0.87)'
           >
           Truelink Complaint Portal
           </Typography>

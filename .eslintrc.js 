@@ -1,0 +1,10 @@
+module.exports = {
+  rules: {
+    '@typescript-eslint/no-explicit-any': [
+      'error',
+      {
+        ignoreRestArgs: true, // Allow 'any' in rest parameters if necessary
+      },
+    ],
+  },
+};
