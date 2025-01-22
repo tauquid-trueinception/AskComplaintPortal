@@ -116,17 +116,25 @@ const Form = () => {
   };
 
   const isMobile = useMediaQuery(theme.breakpoints.down("mobile")); // For small screens
+  const isTablet = useMediaQuery(
+    theme.breakpoints.between("tablet", "tabletLandscape")
+  );
 
   const handleTabChange = (selectedTab: string) => {
     setLanguage(selectedTab); // Update the language state
   };
 
-
-  
   return (
     <Stack
+    bgcolor={"#121212"}
+    width={'100%'}
+    alignItems={"center"}
+    flexDirection={"column"}
+    gap={"32px"}
+  >
+    <Stack
       bgcolor={"#121212"}
-      width={"100%"}
+      width={isMobile ? "393px" : isTablet ? "764px" : "1168px"}
       alignItems={"center"}
       flexDirection={"column"}
       gap={"32px"}
@@ -155,7 +163,7 @@ const Form = () => {
             sx={{ borderRadius: "8px" }}
           />
 
-<FormControl>
+          <FormControl>
             {/* Label */}
             <FormLabel
               sx={{
@@ -193,20 +201,23 @@ const Form = () => {
               ))}
             </RadioGroup>
           </FormControl>
-<Stack direction={'column'} justifyContent={'flex-start'} gap={'8px'}>
-  <Typography variant="l1" fontWeight={'medium'} color="white">{translations[language].mobileNumber}<span style={{color: '#F50D0D',marginLeft: '8px'}}>*</span></Typography>
-          <Stack direction={"row"} gap={"30px"}>
-            <DailCodesSelect
-              country={selectedCountry}
-              setCountry={setSelectedCountry}
-            />
-            <CustomInputField
-              label=""
-              placeholder="1234 XX XXXX"
-              sx={{ borderRadius: "8px", height: "48px" }}
-              type="number"
-            />
-          </Stack>
+          <Stack direction={"column"} justifyContent={"flex-start"} gap={"8px"}>
+            <Typography variant="l1" fontWeight={"medium"} color="white">
+              {translations[language].mobileNumber}
+              <span style={{ color: "#F50D0D", marginLeft: "8px" }}>*</span>
+            </Typography>
+            <Stack direction={"row"} gap={"30px"}>
+              <DailCodesSelect
+                country={selectedCountry}
+                setCountry={setSelectedCountry}
+              />
+              <CustomInputField
+                label=""
+                placeholder="1234 XX XXXX"
+                sx={{ borderRadius: "8px", height: "48px" }}
+                type="number"
+              />
+            </Stack>
           </Stack>
           <CustomInputField
             label={translations[language].address}
@@ -227,8 +238,8 @@ const Form = () => {
             />
           </Stack>
           <CustomInputField
-             label={translations[language].state}
-             placeholder={translations[language].statePlaceholder}
+            label={translations[language].state}
+            placeholder={translations[language].statePlaceholder}
             endAdornment={
               <IconButton
                 onClick={handleOpenMenu}
@@ -240,8 +251,8 @@ const Form = () => {
             sx={{ borderRadius: "8px" }}
           />
           <CustomInputField
-             label={translations[language].companyName}
-             placeholder={translations[language].companyNamePlaceholder}
+            label={translations[language].companyName}
+            placeholder={translations[language].companyNamePlaceholder}
             required
             sx={{ borderRadius: "8px" }}
           />
@@ -253,8 +264,8 @@ const Form = () => {
           />
 
           <CustomInputField
-             label={translations[language].fraudType}
-             placeholder={translations[language].fraudTypePlaceholder}
+            label={translations[language].fraudType}
+            placeholder={translations[language].fraudTypePlaceholder}
             required
             value={selectedOption}
             sx={{ borderRadius: "8px" }}
@@ -267,7 +278,7 @@ const Form = () => {
               </IconButton>
             }
           />
-   <DateCalendarReferenceDate label="Select Date" />
+          <DateCalendarReferenceDate label="Select Date" />
           <Menu
             anchorEl={anchorEl}
             open={Boolean(anchorEl)}
@@ -292,7 +303,7 @@ const Form = () => {
                 color: "rgba(255, 255, 255, 0.87)", // Label color
               }}
             >
-            {translations[language].policeComplaint} 
+              {translations[language].policeComplaint}
             </FormLabel>
             <RadioGroup
               row
@@ -377,7 +388,7 @@ const Form = () => {
                   />
                 </IconButton>
                 <Typography variant="l3" fontWeight="light" color="white">
-                  {translations[language]. policeComplaintD1}
+                  {translations[language].policeComplaintD1}
                 </Typography>
                 <Stack
                   direction="row"
@@ -389,7 +400,7 @@ const Form = () => {
                     sx={{ height: "18px", width: "18px", color: "white" }}
                   />
                   <Typography variant="l3" fontWeight="light" color="white">
-                  {translations[language]. policeComplaintD2}
+                    {translations[language].policeComplaintD2}
                   </Typography>
                 </Stack>
               </Stack>
@@ -411,12 +422,12 @@ const Form = () => {
             file={uploadedFraudFile}
           />
           <CustomInputField
-             label={translations[language].website}
-             placeholder={translations[language].websitePlaceholder}
+            label={translations[language].website}
+            placeholder={translations[language].websitePlaceholder}
             sx={{ borderRadius: "8px" }}
           />
-          <CustomInputField  
-           label={translations[language]. description}
+          <CustomInputField
+            label={translations[language].description}
             sx={{ borderRadius: "8px" }}
             placeholder={translations[language].descriptionPlaceholder}
             multiLineProps={{ minRows: 4, maxRows: 4, maxChar: 1500 }}
@@ -442,7 +453,7 @@ const Form = () => {
               {translations[language].attachment}
             </Typography>
             <Typography variant="l2" fontWeight={"normal"} color="#fff">
-            {translations[language].attachmentInfo}
+              {translations[language].attachmentInfo}
             </Typography>
             {uploadedAttachmentFile && (
               <Stack
@@ -525,6 +536,7 @@ const Form = () => {
           </Stack>
         </Stack>
       </Stack>
+      </Stack>
     </Stack>
   );
 };
@@ -539,7 +551,7 @@ const translations: Translations = {
     name: "Name",
     namePlaceholder: "Enter your name",
     genderlabel: "Gender",
-    mobileNumber : 'Mobile Number',
+    mobileNumber: "Mobile Number",
     city: "City",
     cityPlaceholder: "Enter your city",
     pincode: "Pincode",
@@ -559,16 +571,14 @@ const translations: Translations = {
     description: "Description",
     descriptionPlaceholder: "Enter description",
     policeComplaint: "Have you filed a police complaint?",
-    policeComplaintD1: 'Drag and drop or click to choose file',
-    policeComplaintD2: 'Max file size 10 MB',
+    policeComplaintD1: "Drag and drop or click to choose file",
+    policeComplaintD2: "Max file size 10 MB",
     attachment: "Attachment",
     attachmentInfo:
       "If you have any proof or supporting documents (e.g., Transaction Slip), please feel free to attach the file (PDF, documents, or image).",
-    
-      
-    },
+  },
   Hindi: {
-    mobileNumber: 'मोबाइल नंबर',
+    mobileNumber: "मोबाइल नंबर",
     address: "पता",
     addressPlaceholder: "अपना पता दर्ज करें",
     name: "नाम",
@@ -593,12 +603,10 @@ const translations: Translations = {
     description: "विवरण",
     descriptionPlaceholder: "विवरण दर्ज करें",
     policeComplaint: "क्या आपने पुलिस शिकायत दर्ज की है?",
-    policeComplaintD1: 'फाइल खींचें और छोड़ें या चुनने के लिए क्लिक करें',
-    policeComplaintD2: 'अधिकतम फाइल साइज 10 MB',
+    policeComplaintD1: "फाइल खींचें और छोड़ें या चुनने के लिए क्लिक करें",
+    policeComplaintD2: "अधिकतम फाइल साइज 10 MB",
     attachment: "अनुलग्नक",
     attachmentInfo:
-    'अगर आपके पास कोई प्रमाण या सहायक दस्तावेज हैं, जैसे लेन-देन की स्लिप, तो कृपया फाइल (PDF, दस्तावेज़, या छवि) संलग्न करें। ',
-   
+      "अगर आपके पास कोई प्रमाण या सहायक दस्तावेज हैं, जैसे लेन-देन की स्लिप, तो कृपया फाइल (PDF, दस्तावेज़, या छवि) संलग्न करें। ",
   },
- 
 };
