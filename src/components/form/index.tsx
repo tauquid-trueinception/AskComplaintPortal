@@ -202,7 +202,7 @@ const Form = () => {
             </RadioGroup>
           </FormControl>
           <Stack direction={"column"} justifyContent={"flex-start"} gap={"8px"}>
-            <Typography variant="l1" fontWeight={"medium"} color="white">
+            <Typography fontSize={'16px'} fontWeight={"medium"} color="white">
               {translations[language].mobileNumber}
               <span style={{ color: "#F50D0D", marginLeft: "8px" }}>*</span>
             </Typography>
@@ -387,7 +387,7 @@ const Form = () => {
                     sx={{ height: "24px", width: "24px", color: "white" }}
                   />
                 </IconButton>
-                <Typography variant="l3" fontWeight="light" color="white">
+                <Typography fontSize={"12px"} fontWeight="light" color="white">
                   {translations[language].policeComplaintD1}
                 </Typography>
                 <Stack
@@ -399,7 +399,7 @@ const Form = () => {
                   <Info
                     sx={{ height: "18px", width: "18px", color: "white" }}
                   />
-                  <Typography variant="l3" fontWeight="light" color="white">
+                  <Typography fontSize={"12px"} fontWeight="light" color="white">
                     {translations[language].policeComplaintD2}
                   </Typography>
                 </Stack>
@@ -446,13 +446,13 @@ const Form = () => {
             }}
           >
             <Typography
-              variant="l1"
+              fontSize={"16px"}
               fontWeight="medium"
               color="rgba(255, 255, 255, 0.87)"
             >
               {translations[language].attachment}
             </Typography>
-            <Typography variant="l2" fontWeight={"normal"} color="#fff">
+            <Typography fontSize={"14px"} fontWeight={"normal"} color="#fff">
               {translations[language].attachmentInfo}
             </Typography>
             {uploadedAttachmentFile && (
@@ -479,7 +479,7 @@ const Form = () => {
                   {" "}
                   <GoogleDrive sx={{ height: "20px", width: "20px" }} />{" "}
                   <Typography
-                    variant="l1"
+                    fontSize={"16px"}
                     fontWeight={"normal"}
                     color="rgba(255, 255, 255, 0.60)"
                     sx={{ textOverflow: "ellipsis" }}
